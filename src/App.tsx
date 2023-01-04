@@ -43,13 +43,20 @@ function App() {
     }
   };
 
+  const handlePaginationChange = (page: number) => {
+    getFilteredMovies(page);
+  };
+
   return (
     <div className="app">
       <header className="appHeader">
         <img src={logo} className="logo" alt="logo" />
       </header>
       <FilterInput handleKeyDown={handleKeyDown} />
-      <MoviesList {...moviesList} />
+      <MoviesList
+        {...moviesList}
+        handlePaginationChange={handlePaginationChange}
+      />
     </div>
   );
 }

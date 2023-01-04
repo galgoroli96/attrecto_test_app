@@ -11,6 +11,7 @@
     margin: 0;
     border-radius: 8px;
     position: relative;
+    cursor: pointer;
     .movieTitle {
       bottom: 0;
       margin: 0.5rem;
@@ -23,10 +24,15 @@
       border-radius: 8px;
     }
   }
-  .noResults > p {
-    margin: 3rem 0;
-    font-size: 24px;
-    text-align: center;
+}
+
+.noResults > p {
+  margin: 3rem 0;
+  font-size: 24px;
+  text-align: center;
+  span {
+    font-style: italic;
+    color: #5d7eb9;
   }
 }
 
