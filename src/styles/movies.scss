@@ -1,0 +1,31 @@
+.moviesSection {
+  .moviesContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .movieCard {
+    width: 200px;
+    margin: 0;
+    border-radius: 8px;
+    position: relative;
+    .movieTitle {
+      bottom: 0;
+      margin: 0.5rem;
+      min-height: 50px;
+    }
+    .moviePoster {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  }
+  .noResults > p {
+    margin: 3rem 0;
+    font-size: 24px;
+    text-align: center;
+  }
+}

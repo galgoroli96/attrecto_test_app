@@ -2,7 +2,7 @@ import { useFilter } from "../context/FilterContext";
 import "../styles/filter.scss";
 import { FilterInputProps } from "../types";
 
-const FilterInput = ({ handleSearch, handleKeyDown }: FilterInputProps) => {
+const FilterInput = ({ handleKeyDown }: FilterInputProps) => {
   const { filter, updateFilter } = useFilter();
 
   return (
@@ -13,7 +13,7 @@ const FilterInput = ({ handleSearch, handleKeyDown }: FilterInputProps) => {
         value={filter}
         onChange={(event) => updateFilter(event.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Search for a movie..."
+        placeholder="Type to search..."
       />
     </section>
   );
