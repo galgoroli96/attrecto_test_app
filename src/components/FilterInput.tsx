@@ -1,6 +1,9 @@
 import { useFilter } from "../context/FilterContext";
 import "../styles/filter.scss";
-import { FilterInputProps } from "../types";
+
+interface FilterInputProps {
+  handleKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+}
 
 const FilterInput = ({ handleKeyDown }: FilterInputProps) => {
   const { filter, updateFilter } = useFilter();
