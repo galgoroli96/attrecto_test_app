@@ -9,3 +9,18 @@ body {
   color: white;
   font-family: sans-serif;
 }
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+  background-color: #202124cc !important;
+}
+
+.modalHeader {
+  position: relative;
+  min-height: 30px;
+  .closeBtn {
+    all: unset;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    font-size: 24px;
+  }
+}
