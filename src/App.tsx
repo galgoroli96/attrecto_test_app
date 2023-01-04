@@ -1,23 +1,28 @@
-import logo from "./logo.svg";
+import logo from "./assets/logo.png";
 import "./App.scss";
+import { useFilter } from "./context/FilterContext";
+import FilterInput from "./components/FilterInput";
 
 function App() {
+  const { filter } = useFilter();
+
+  const handleSearch = () => {
+    // getFilteredMovies();
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      // getFilteredMovies();
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app">
+      <header className="appHeader">
+        <img src={logo} className="logo" alt="logo" />
       </header>
+      <FilterInput handleSearch={handleSearch} handleKeyDown={handleKeyDown} />
+      <section className="moviesSection">{/* moviesList */}</section>
     </div>
   );
 }
