@@ -17,6 +17,7 @@
     "node-sass": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
     "react-modal": "^3.16.1",
     "react-pagination-main": "^1.1.3",
     "react-scripts": "5.0.1",
