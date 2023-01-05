@@ -50,8 +50,20 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    margin: 15px 0;
     .imdbLink {
       cursor: pointer;
+    }
+  }
+  .moviePoster {
+    height: 100%;
+  }
+  .movieData {
+    .overview {
+      margin-bottom: 25px;
+    }
+    p {
+      margin: 10px 0;
     }
   }
   .genreList {

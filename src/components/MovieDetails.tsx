@@ -18,6 +18,9 @@ const detailsInitialState = {
   imdb_id: "",
   runtime: 0,
   production_countries: [],
+  original_language: "",
+  tagline: "",
+  spoken_languages: [],
 };
 
 function MovieDetails({ movieId }: DetailProps) {
@@ -34,6 +37,15 @@ function MovieDetails({ movieId }: DetailProps) {
     return countryList[0]?.name || "";
   }
 
+  function findLanguage(languageCode: string) {
+    if (languageCode && details.spoken_languages) {
+      return details.spoken_languages.find(
+        (lang) => lang.iso_639_1 === languageCode
+      )?.english_name;
+    }
+    return "";
+  }
+
   return (
     <article className="movieDetails">
       {loading ? (
@@ -47,12 +59,14 @@ function MovieDetails({ movieId }: DetailProps) {
           />
           <figcaption className="movieData">
             <h1>{details.title}</h1>
+            <h4>{details.tagline}</h4>
             <div className="releaseAndImdbContainer">
               <IMDbLink imdbId={details.imdb_id} />
               <p>Released: {details.release_date}</p>
             </div>
-            <p>{details.overview}</p>
+            <p className="overview">{details.overview}</p>
             <p>Country: {mapCountry(details.production_countries)}</p>
+            <p>Language: {findLanguage(details.original_language)}</p>
             <ul className="genreList">
               {details.genres.map((genre: Genre) => (
                 <li key={genre.id}>{genre.name}</li>

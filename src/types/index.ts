@@ -3,6 +3,11 @@ export type Genre = {
     name: string;
 }
 
+export type SpokenLanguage = {
+    english_name: string;
+    iso_639_1: string;
+}
+
 export type ProdCountries = {
     iso_3166_1: string,
     name: string
@@ -30,7 +35,10 @@ export type MovieDetail = {
     release_date: string;
     imdb_id: string;
     runtime: number;
-    production_countries: ProdCountries[]
+    production_countries: ProdCountries[],
+    original_language: string,
+    tagline: string,
+    spoken_languages: SpokenLanguage[]
 }
 
 
