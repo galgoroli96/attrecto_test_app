@@ -2,10 +2,11 @@ import logo from "./assets/logo.png";
 import "./App.scss";
 import { useFilter } from "./context/FilterContext";
 import FilterInput from "./components/FilterInput";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MovieService from "./MovieService";
 import { Movies } from "./types";
 import { MoviesList } from "./components/MoviesList";
+import Loader from "./partials/Loader";
 
 const moviesInitialState = {
   page: 0,
@@ -16,25 +17,30 @@ const moviesInitialState = {
 
 function App() {
   const { filter } = useFilter();
+  const isLoading = useRef(false);
   const [moviesList, setMoviesList] = useState<Movies>(moviesInitialState);
 
   useEffect(() => {
     if (filter.length >= 3) {
+      isLoading.current = true;
       const delayDebounceFn = setTimeout(() => {
         getFilteredMovies(1);
       }, 800);
 
       return () => clearTimeout(delayDebounceFn);
     } else if (filter === "") {
+      isLoading.current = false;
       setMoviesList(moviesInitialState);
     }
     // eslint-disable-next-line
   }, [filter]);
 
   const getFilteredMovies = (page: number) => {
-    MovieService.getFilteredMovies(filter, page).then((resp) => {
-      setMoviesList(resp.data);
-    });
+    MovieService.getFilteredMovies(filter, page)
+      .then((resp) => {
+        setMoviesList(resp.data);
+      })
+      .then(() => (isLoading.current = false));
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -53,10 +59,16 @@ function App() {
         <img src={logo} className="logo" alt="logo" />
       </header>
       <FilterInput handleKeyDown={handleKeyDown} />
-      <MoviesList
-        {...moviesList}
-        handlePaginationChange={handlePaginationChange}
-      />
+      <>
+        {isLoading.current ? (
+          <Loader />
+        ) : (
+          <MoviesList
+            {...moviesList}
+            handlePaginationChange={handlePaginationChange}
+          />
+        )}
+      </>
     </div>
   );
 }
