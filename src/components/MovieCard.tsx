@@ -1,4 +1,5 @@
 import moment from "moment";
+import { findGenreName } from "../helpers/helpers";
 import MovieService from "../MovieService";
 import "../styles/movies.scss";
 
@@ -16,6 +17,7 @@ function MovieCard({
   title,
   release_date,
   poster_path,
+  genre_ids,
   onClick,
 }: MovieElementProps) {
   const releaseDate = release_date ? moment(release_date).format("YYYY") : "-";
@@ -32,7 +34,12 @@ function MovieCard({
         alt={title}
       />
       <figcaption className="movieTitle">
-        {title} ({releaseDate})
+        <p>
+          {title} ({releaseDate})
+        </p>
+        {genre_ids && (
+          <span className="mainGenre">{findGenreName(genre_ids[0])}</span>
+        )}
       </figcaption>
     </figure>
   );

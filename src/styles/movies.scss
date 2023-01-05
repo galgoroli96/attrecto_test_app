@@ -16,12 +16,18 @@
       bottom: 0;
       margin: 0.5rem;
       min-height: 50px;
+      p {
+        margin: 0 0 5px;
+      }
     }
     .moviePoster {
       height: 300px;
       width: 100%;
       object-fit: cover;
       border-radius: 8px;
+    }
+    .mainGenre {
+      color: grey;
     }
   }
 }

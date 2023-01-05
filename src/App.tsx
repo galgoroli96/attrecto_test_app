@@ -1,8 +1,7 @@
 import logo from "./assets/logo.png";
-import "./App.scss";
 import { useFilter } from "./context/FilterContext";
 import FilterInput from "./components/FilterInput";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MovieService from "./MovieService";
 import { Movies } from "./types";
 import { MoviesList } from "./components/MoviesList";
@@ -17,10 +16,17 @@ const moviesInitialState = {
 
 function App() {
   const { filter } = useFilter();
+  const lock = useRef(false);
   const [loading, setLoading] = useState(true);
   const [moviesList, setMoviesList] = useState<Movies>(moviesInitialState);
 
   useEffect(() => {
+    if (!lock.current) {
+      MovieService.getGenreList().then((resp) => {
+        sessionStorage.setItem("genres", JSON.stringify(resp.data.genres));
+        lock.current = false;
+      });
+    }
     if (filter.length >= 3) {
       setLoading(true);
       const delayDebounceFn = setTimeout(() => {
