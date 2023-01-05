@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieService from "../MovieService";
 import IMDbLink from "../partials/IMDbLink";
+import Loader from "../partials/Loader";
 import "../styles/movies.scss";
 import { Genre, MovieDetail, ProdCountries } from "../types";
 
@@ -20,10 +21,13 @@ const detailsInitialState = {
 };
 
 function MovieDetails({ movieId }: DetailProps) {
+  const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState<MovieDetail>(detailsInitialState);
 
   useEffect(() => {
-    MovieService.getMovieDetails(movieId).then((resp) => setDetails(resp));
+    MovieService.getMovieDetails(movieId)
+      .then((resp) => setDetails(resp))
+      .then(() => setLoading(false));
   }, [movieId]);
 
   function mapCountry(countryList: ProdCountries[]) {
@@ -32,7 +36,9 @@ function MovieDetails({ movieId }: DetailProps) {
 
   return (
     <article className="movieDetails">
-      {details && (
+      {loading ? (
+        <Loader />
+      ) : (
         <>
           <img
             className="moviePoster"
@@ -49,7 +55,7 @@ function MovieDetails({ movieId }: DetailProps) {
             <p>Country: {mapCountry(details.production_countries)}</p>
             <ul className="genreList">
               {details.genres.map((genre: Genre) => (
-                <li>{genre.name}</li>
+                <li key={genre.id}>{genre.name}</li>
               ))}
             </ul>
             <p>Length: {details.runtime} mins</p>

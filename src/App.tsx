@@ -2,7 +2,7 @@ import logo from "./assets/logo.png";
 import "./App.scss";
 import { useFilter } from "./context/FilterContext";
 import FilterInput from "./components/FilterInput";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import MovieService from "./MovieService";
 import { Movies } from "./types";
 import { MoviesList } from "./components/MoviesList";
@@ -17,19 +17,19 @@ const moviesInitialState = {
 
 function App() {
   const { filter } = useFilter();
-  const isLoading = useRef(false);
+  const [loading, setLoading] = useState(true);
   const [moviesList, setMoviesList] = useState<Movies>(moviesInitialState);
 
   useEffect(() => {
     if (filter.length >= 3) {
-      isLoading.current = true;
+      setLoading(true);
       const delayDebounceFn = setTimeout(() => {
         getFilteredMovies(1);
       }, 800);
 
       return () => clearTimeout(delayDebounceFn);
     } else if (filter === "") {
-      isLoading.current = false;
+      setLoading(false);
       setMoviesList(moviesInitialState);
     }
     // eslint-disable-next-line
@@ -37,14 +37,13 @@ function App() {
 
   const getFilteredMovies = (page: number) => {
     MovieService.getFilteredMovies(filter, page)
-      .then((resp) => {
-        setMoviesList(resp.data);
-      })
-      .then(() => (isLoading.current = false));
+      .then((resp) => setMoviesList(resp.data))
+      .then(() => setLoading(false));
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
+      setLoading(true);
       getFilteredMovies(1);
     }
   };
@@ -60,7 +59,7 @@ function App() {
       </header>
       <FilterInput handleKeyDown={handleKeyDown} />
       <>
-        {isLoading.current ? (
+        {loading ? (
           <Loader />
         ) : (
           <MoviesList
