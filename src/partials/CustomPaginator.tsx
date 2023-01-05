@@ -15,13 +15,7 @@ const CustomPaginator = ({
   onPaginationChange,
 }: PaginationProps) => {
   if (total_pages === 1) {
-    return (
-      <ul className="pagination">
-        <li key={1} className={`pageItem activePage`}>
-          1
-        </li>
-      </ul>
-    );
+    return <></>;
   }
   return (
     <Pagination

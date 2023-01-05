@@ -5,7 +5,7 @@ import "../styles/movies.scss";
 import { useFilter } from "../context/FilterContext";
 import CustomModal from "../partials/CustomModal";
 import MovieDetails from "./MovieDetails";
-import CustomPaginator from "./CustomPaginator";
+import CustomPaginator from "../partials/CustomPaginator";
 
 interface MoviesProps {
   page: number;
