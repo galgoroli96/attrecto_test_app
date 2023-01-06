@@ -20,7 +20,7 @@ function getGenreList() {
 
 function getFilteredMovies(query: string, page: number) {
   return axios.get(`${BASE_URL}/search/movie`, {
-    params: { api_key: API_KEY, query, page },
+    params: { api_key: API_KEY, include_adult: false, query, page },
   });
 }
 
