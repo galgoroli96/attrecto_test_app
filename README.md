@@ -4,18 +4,20 @@ This app created with [React](https://reactjs.org) + [TypeScript](https://www.ty
 
 ## Getting started
 
+- Required Node version: `v19.3.0`
+
 1. Install dependencies.
 
    ```bash
    yarn install
    ```
 
-2. Start dev server with hot reload at http://localhost:3000/
+2. Start dev server with hot reload at http://localhost:8080/
    ```bash
    yarn start
    ```
 
-## Other commands
+## Other command(s)
 
 - Run build
   ```bash

@@ -1,0 +1,77 @@
+@media (max-width: 1450px) {
+  #root {
+    padding: 1rem 2rem !important;
+  }
+  .movieCard {
+    width: 160px !important;
+  }
+  .moviesContainer {
+    justify-content: space-around !important;
+  }
+}
+@media (max-width: 900px) {
+  .ReactModal__Content.ReactModal__Content--after-open {
+    width: 80vw !important;
+    max-height: 80vh !important;
+    height: fit-content !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .moviesContainer {
+    gap: 25px !important;
+  }
+  .movieCard {
+    width: 150px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .filterSection {
+    input {
+      width: 250px !important;
+    }
+  }
+  .appHeader {
+    text-align: center;
+  }
+  .moviesSection {
+    .movieCard {
+      max-width: 140px;
+      width: auto !important;
+    }
+  }
+  .movieDetails {
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .moviesSection {
+    .movieCard {
+      max-width: 180px;
+      width: auto !important;
+    }
+  }
+  .filterSection {
+    margin: 1.5rem 0;
+    h1 {
+      display: none;
+    }
+    input {
+      width: 200px !important;
+    }
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .ReactModal__Content.ReactModal__Content--after-open {
+    width: 80vw !important;
+    height: 80vh !important;
+  }
+  .movieDetails {
+    .moviePoster {
+      width: 200px !important;
+    }
+  }
+}

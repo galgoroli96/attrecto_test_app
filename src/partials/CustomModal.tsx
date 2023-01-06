@@ -8,6 +8,7 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
+    borderRadius: "8px",
     transform: "translate(-50%, -50%)",
     backgroundColor: "#0b1018",
     width: "800px",

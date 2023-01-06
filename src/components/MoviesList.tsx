@@ -34,9 +34,9 @@ export const MoviesList = ({
       const screen = window.innerWidth;
       if (screen >= 900) {
         setPageRange(10);
-      } else if (screen >= 768 && screen < 900) {
+      } else if (541 < screen && screen <= 800) {
         setPageRange(5);
-      } else {
+      } else if (screen < 540) {
         setPageRange(2);
       }
     }
