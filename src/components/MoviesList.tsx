@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { MovieElement } from "../types";
 import MovieCard from "./MovieCard";
 import "../styles/movies.scss";
@@ -24,9 +24,25 @@ export const MoviesList = ({
 }: MoviesProps) => {
   const [open, setOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<number>(0);
+  const [pageRange, setPageRange] = useState<number>(10);
   const { filter } = useFilter();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    function handleResize() {
+      const screen = window.innerWidth;
+      if (screen >= 900) {
+        setPageRange(10);
+      } else if (screen >= 768 && screen < 900) {
+        setPageRange(5);
+      } else {
+        setPageRange(2);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+  }, []);
 
   const paginationChange = useCallback(
     (page: number) => {
@@ -74,7 +90,7 @@ export const MoviesList = ({
       <CustomPaginator
         currentPage={currentPage}
         total_pages={total_pages}
-        pageRange={10}
+        pageRange={pageRange}
         onPaginationChange={paginationChange}
       />
       <CustomModal isOpen={open} onClose={() => setOpen(!open)}>

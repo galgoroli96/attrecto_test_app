@@ -55,3 +55,45 @@ body {
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgb(73, 69, 69);
 }
+
+@media (max-width: 1199px) {
+}
+
+@media (max-width: 999px) {
+  .ReactModal__Content.ReactModal__Content--after-open {
+    width: 600px !important;
+  }
+  .appHeader {
+    text-align: center;
+  }
+}
+
+@media (max-width: 450px) {
+  #root {
+    padding: 1rem;
+  }
+  .ReactModal__Content.ReactModal__Content--after-open {
+    width: 330px !important;
+  }
+  .movieDetails {
+    flex-direction: column !important;
+    .moviePoster {
+      width: 180px;
+    }
+  }
+  .pagination {
+    .pageItem,
+    .pageItemDisabled {
+      padding: 5px 10px !important;
+    }
+  }
+  .moviesContainer {
+    justify-content: center !important;
+    .movieCard {
+      width: 150px !important;
+    }
+  }
+  .filterSection input {
+    width: 180px !important;
+  }
+}
