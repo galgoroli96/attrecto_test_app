@@ -30,7 +30,7 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
                 exclude: /node_modules/,
                 use: ['file-loader?name=[name].[ext]', 'image-webpack-loader']
-            },
+            }
         ]
     },
     resolve: {
@@ -40,8 +40,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'public/index.html',
             filename: 'index.html',
-            favicon: 'public/favicon.ico',
-            manifest: "public/manifest.json",
+            favicon: './public/favicon.ico',
+            manifest: './public/manifest.json',
         })
     ]
 }
